@@ -1,0 +1,16 @@
+# Create by Alexey Romanovets.
+CC=gcc
+CFLAGS=-c -o
+OBJECTS=obj/main.o obj/MusicManager.o
+
+bin/MusicSalon:
+	gcc -o bin/MusicSalon.exe src/main.c src/MusicManager.c sqlite/sqlite3.c
+
+obj/main.o: src/main.c
+	$(CC) $(CFLAGS) obj/main.o src/main.c
+
+obj/MusicManager.o: src/MusicManager.c
+	$(CC) $(CFLAGS) obj/MusicManager.o src/MusicManager.c
+
+clean:
+	rm -rf obj/*.o bin/MusicSalon
