@@ -1,5 +1,7 @@
 #include "../sqlite/sqlite3.h"
 
+sqlite3* db;
+
 const char* adminCommands[] = {
 	"For all compacts - information on the number of sold and remaining compacts of the same type in descending order of difference.",
 

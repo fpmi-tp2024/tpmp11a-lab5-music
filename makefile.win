@@ -1,16 +1,19 @@
 # Create by Alexey Romanovets.
-CC=gcc
-CFLAGS=-c -o
-OBJECTS=obj/main.o obj/MusicManager.o
 
-bin/MusicSalon:
-	gcc -o bin/MusicSalon.exe src/main.c src/MusicManager.c sqlite/sqlite3.c
+bin/MusicSalon: obj/main.o obj/MusicManager.o obj/sqlite3.o
+	gcc -o bin/MusicSalon.exe obj/main.o obj/MusicManager.o obj/sqlite3.o
 
 obj/main.o: src/main.c
-	$(CC) $(CFLAGS) obj/main.o src/main.c
+	gcc -c src/main.c
+	move main.o obj
 
 obj/MusicManager.o: src/MusicManager.c
-	$(CC) $(CFLAGS) obj/MusicManager.o src/MusicManager.c
+	gcc -c src/MusicManager.c
+	move MusicManager.o obj
+
+obj/sqlite3.o: sqlite/sqlite3.c
+	gcc -c sqlite/sqlite3.c
+	move sqlite3.o obj
 
 clean:
 	rm -rf obj/*.o bin/MusicSalon

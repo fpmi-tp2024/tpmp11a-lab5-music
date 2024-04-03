@@ -5,6 +5,7 @@
 #include "../sqlite/sqlite3.h"
 
 const char* adminPassword = "123456";
+sqlite3* d;
 
 struct tm number_to_date(long int number) {
 	struct tm tm;
@@ -22,7 +23,6 @@ long int date_to_number(int day, int month, int year) {
 	tm.tm_min = 0;
 	tm.tm_sec = 0;
 	tm.tm_isdst = -1;
-	printf("%ld\n", mktime(&tm));
 	return mktime(&tm);
 }
 
@@ -32,9 +32,9 @@ void printCommands(const char* comand[], int size) {
 	printf("0 - Exit\n");
 }
 
-int Authorization() {
+int Authorization(sqlite3** db) {
 	char userName[51], password[51];
-
+	d = *db;
 	printf("Enter your name: ");
 	scanf("%s", userName);
 	userName[50] = '\0';
@@ -47,6 +47,37 @@ int Authorization() {
 	return isAdmin;
 }
 
+static void restrictions_callback(sqlite3_context* context, int argc, sqlite3_value** argv) {
+	int total_received = 0;
+	int total_sold = 0;
+	int compact_disk_id = atoi(sqlite3_value_text(argv[4]));
+
+	sqlite3_stmt* stmt;
+	const char* sql = "SELECT SUM(count) FROM Compact_Sale_Info WHERE Compact_Disk_info_ID = ? AND codeOfOperation = 1";
+	sqlite3_prepare_v2(d, sql, -1, &stmt, 0);
+	sqlite3_bind_int(stmt, 1, compact_disk_id);
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		total_received = sqlite3_column_int(stmt, 0);
+	}
+	sqlite3_finalize(stmt);
+
+	sqlite3_prepare_v2(d, sql, -1, &stmt, 0);
+	sqlite3_bind_int(stmt, 1, compact_disk_id);
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		total_sold = sqlite3_column_int(stmt, 0);
+	}
+	sqlite3_finalize(stmt);
+
+	if (total_sold > total_received) {
+		fprintf(stderr, "Error: Cannot insert new record into Compact_Sale_Info table. The total number of sold compact disks exceeds the total number of received compact disks.\n");
+		sqlite3_exec(d, "ROLLBACK", 0, 0, 0);
+	}
+	else
+	{
+		printf("Evetything is ok\n");
+	}
+}
+
 static int callback(void* tmp, int argc, char* argv[], char* colName[]) {
 	for (int i = 0; i < argc; i++)
 	{
@@ -54,7 +85,6 @@ static int callback(void* tmp, int argc, char* argv[], char* colName[]) {
 		{
 			char* endptr;
 			long int number = strtol(argv[i], &endptr, 10);
-			printf("%s\n%ld\n", colName[i], number);
 			struct tm tm = number_to_date(number);
 
 			printf(" %s = %d-%d-%d\n", colName[i], tm.tm_mday, tm.tm_mon + 1, tm.tm_year + 1900);
@@ -420,20 +450,48 @@ void Delete(sqlite3 *db){
 	if (sqlite3_exec(db, requestBuffer, callback, 0, &errorMsg))
 		printf("%s", errorMsg);
 }
-void Restrictions(sqlite3 *db){
-	// TO DO...
+void Restrictions(sqlite3 *db) {
+	sqlite3_create_function(db, "restrictions_callback", 0, SQLITE_UTF8, 0, &restrictions_callback, 0, 0);	
+    const char *sql = "CREATE TRIGGER IF NOT EXISTS check_compact_disk_sales BEFORE INSERT ON Compact_Sale_Info FOR EACH ROW BEGIN SELECT restrictions_callback(); END;";
+    sqlite3_exec(db, sql, 0, 0, 0);
 }
 void InfoCD_ByDate(sqlite3 *db){
 	char requestBuffer[500];
 	char* errorMsg = 0;
 
+	int startDay, startMonth, startYear;
+
+	printf("Enter start day: ");
+	scanf("%d", &startDay);
+	printf("Enter start month: ");
+	scanf("%d", &startMonth);
+	printf("Enter start year: ");
+	scanf("%d", &startYear);
+	long int startDate = date_to_number(startDay, startMonth, startYear);
+
+
+	int endDay, endMonth, endYear;
+
+	printf("Enter end day: ");
+	scanf("%d", &endDay);
+	printf("Enter end month: ");
+	scanf("%d", &endMonth);
+	printf("Enter end year: ");
+	scanf("%d", &endYear);
+	long int endDate = date_to_number(endDay, endMonth, endYear);
+
+
 	sprintf(requestBuffer,
-		"CREATE TABLE Compact_Disk_Sales_Summary ( "
-		"ProducerName text, "
-		"CountReceived integer, "
-		"CountSold integer, "
-		"PRIMARY KEY(ProducerName));"
-	);
+		"INSERT INTO Compact_Disk_Sales_Summary (ProducerName, CountReceived, CountSold) "
+		"SELECT cdi.producerName, COUNT(cdi.ID), COALESCE(SUM(csi.count), 0) "
+		"FROM Compact_Disk_info cdi "
+		"JOIN producer_info p "
+		"ON cdi.ID = p.Compact_Disk_info_ID "
+		"LEFT JOIN Compact_Sale_Info csi "
+		"ON cdi.ID = csi.Compact_Disk_info_ID "
+		"WHERE cdi.dateOfCreate BETWEEN %ld AND %ld "
+		"AND csi.dateOfOperation BETWEEN %ld AND %ld "
+		"GROUP BY cdi.producerName;", startDate, endDate, startDate, endDate);
 	if (sqlite3_exec(db, requestBuffer, callback, 0, &errorMsg))
 		printf("%s", errorMsg);
 }
