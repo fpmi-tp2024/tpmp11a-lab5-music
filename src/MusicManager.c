@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../sqlite/sqlite3.h"
+#include <sqlite3.h>
 
 const char* adminPassword = "123456";
 sqlite3* d;
@@ -17,8 +17,8 @@ struct tm number_to_date(long int number) {
 long int date_to_number(int day, int month, int year) {
 	struct tm tm;
 	tm.tm_mday = day;
-	tm.tm_mon = month - 1; // Месяцы в tm начинаются с 0
-	tm.tm_year = year - 1900; // Годы в tm начинаются с 1900
+	tm.tm_mon = month - 1; // ГЊГҐГ±ГїГ¶Г» Гў tm Г­Г Г·ГЁГ­Г ГѕГІГ±Гї Г± 0
+	tm.tm_year = year - 1900; // ГѓГ®Г¤Г» Гў tm Г­Г Г·ГЁГ­Г ГѕГІГ±Гї Г± 1900
 	tm.tm_hour = 0;
 	tm.tm_min = 0;
 	tm.tm_sec = 0;
