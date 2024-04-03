@@ -13,4 +13,4 @@ jobs:
 
     steps:
     - name: configure
-      run: make -f makefile.win
+      run: make
