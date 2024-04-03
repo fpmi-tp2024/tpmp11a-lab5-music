@@ -1,0 +1,15 @@
+# Create by Alexey Romanovets.
+
+bin/MusicSalon: obj/main.o obj/MusicManager.o
+	gcc -o bin/MusicSalon.exe obj/main.o obj/MusicManager.o sqlite/sqlite3.c
+
+obj/main.o: src/main.c
+	gcc -c src/main.c
+	move main.o obj
+
+obj/MusicManager.o: src/MusicManager.c
+	gcc -c src/MusicManager.c
+	move MusicManager.o obj
+
+clean:
+	rm -rf obj/*.o bin/MusicSalon

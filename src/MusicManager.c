@@ -285,7 +285,7 @@ void Insert(sqlite3 *db){
 		scanf("%d", &Compact_Disk_info_ID);
 
 		sprintf(requestBuffer, "INSERT INTO Compact_Sale_Info (ID, count, dateOfOperation, codeOfOperation, Compact_Disk_info_ID) "
-			"VALUES (null, '%d', %ld, '%d', '%d');", count, dateOfOperation, producerName, Compact_Disk_info_ID);
+			"VALUES (null, '%d', %ld, %d, %d);", count, dateOfOperation, producerName, Compact_Disk_info_ID);
 		break;
 	}
 	default:
