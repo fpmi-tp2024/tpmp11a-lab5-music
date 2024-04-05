@@ -5,7 +5,7 @@
 -- Table: Compact_Disk_info
 CREATE TABLE Compact_Disk_info (
     ID integer NOT NULL CONSTRAINT Compact_Disk_info_pk PRIMARY KEY,
-    dateOfCreate INTEGER,
+    dateOfCreate integer,
     producerName text,
     price integer
 );
@@ -14,7 +14,7 @@ CREATE TABLE Compact_Disk_info (
 CREATE TABLE Compact_Sale_Info (
     ID integer NOT NULL CONSTRAINT ID PRIMARY KEY,
     count integer,
-    dateOfOperation INTEGER,
+    dateOfOperation integer,
     codeOfOperation integer NOT NULL,
     Compact_Disk_info_ID integer NOT NULL,
     CONSTRAINT Compact_Sale_Info_Compact_Disk_info FOREIGN KEY (Compact_Disk_info_ID)
