@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <locale.h>
 #include "../include/MusicManager.h"
-#include <sqlite3.h>
+#include "../sqlite/sqlite3.h"
 
 int main() {
 	setlocale(LC_ALL, "rus");
