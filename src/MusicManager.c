@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <sqlite3.h>
+#include "../sqlite/sqlite3.h"
 
 const char* adminPassword = "123456";
 sqlite3* d;
