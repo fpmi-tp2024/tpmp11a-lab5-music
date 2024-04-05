@@ -1,6 +1,3 @@
--- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2021-03-26 19:45:00.615
-
 -- tables
 -- Table: Compact_Disk_info
 CREATE TABLE Compact_Disk_info (
