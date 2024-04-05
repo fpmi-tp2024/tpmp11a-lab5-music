@@ -1,0 +1,8 @@
+title: Музыкальный салон
+author: Аладко Анастасия, Будник Кирилл, Доброцкая Мария, Романовец Алексей
+description: > # this means to ignore newlines until "baseurl:"
+  Проект "Музыкальный салон"
+
+show_excerpts: true # set to false to remove excerpts on the homepage
+
+theme: jekyll-theme-slate
