@@ -8,7 +8,7 @@
 
 # Схема базы данных
 
-[Схема базы данных](../diagrams/'Схема\бд.png')
+[Схема базы данных](../diagrams/Схема_бд.png)
 
 [Ссылка на sql-файл](../doc/DB_Source/DB_Music_Salon_create.sql)
 
