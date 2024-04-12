@@ -1,9 +1,5 @@
 #include "gtest/gtest.h"
-
-extern "C"
-{
-    #include "../include/MusicManager.h"
-}
+#include "../include/MusicManager.h"
 
 TEST(DateToNumberTest, BasicTest)
 {
