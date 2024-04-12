@@ -14,18 +14,6 @@ struct tm number_to_date(long int number) {
 	return tm;
 }
 
-long int date_to_number(int day, int month, int year) {
-	struct tm tm;
-	tm.tm_mday = day;
-	tm.tm_mon = month - 1; // Ìåñÿöû â tm íà÷èíàþòñÿ ñ 0
-	tm.tm_year = year - 1900; // Ãîäû â tm íà÷èíàþòñÿ ñ 1900
-	tm.tm_hour = 0;
-	tm.tm_min = 0;
-	tm.tm_sec = 0;
-	tm.tm_isdst = -1;
-	return mktime(&tm);
-}
-
 void printCommands(const char* comand[], int size) {
 	for (int i = 0; i < size; i++)
 		printf("%d - \t\t%s\n\n", i + 1, comand[i]);

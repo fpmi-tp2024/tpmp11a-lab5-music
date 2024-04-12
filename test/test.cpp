@@ -1,6 +1,5 @@
 #include "gtest/gtest.h"
 #include "../include/MusicManager.h"
-#include <time.h>
 
 TEST(Test, BasicTest)
 {
