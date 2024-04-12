@@ -2,6 +2,10 @@
 
 sqlite3* db;
 
+struct tm number_to_date(long int number);
+
+long int date_to_number(int day, int month, int year);
+
 const char* adminCommands[] = {
 	"For all compacts - information on the number of sold and remaining compacts of the same type in descending order of difference.",
 

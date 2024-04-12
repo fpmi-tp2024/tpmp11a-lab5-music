@@ -156,7 +156,7 @@ void CountAndCostCD_ByDate(sqlite3 *db){
 void AllCd_ByMaxSold(sqlite3 *db){
 	char requestBuffer[500];
 	char* errorMsg = 0;
-	sprintf(requestBuffer, 
+	sprintf(requestBuffer,
 		"SELECT d.ID, d.dateOfCreate, d.producerName, d.price, p.author, p.signer, p.name, MAX(s.count) as max_count "
 		"FROM Compact_Disk_info d "
 		"JOIN producer_info p ON d.ID = p.Compact_Disk_info_ID "
@@ -164,7 +164,7 @@ void AllCd_ByMaxSold(sqlite3 *db){
 		"GROUP BY d.ID, d.dateOfCreate, d.producerName, d.price, p.author, p.signer, p.name "
 		"HAVING MAX(s.count) = (SELECT max(count) FROM Compact_Sale_Info);"
 	);
-	
+
 	if (sqlite3_exec(db, requestBuffer, callback, 0, &errorMsg))
 		printf("%s", errorMsg);
 }
@@ -232,7 +232,7 @@ void Insert(sqlite3 *db){
 	{
 		char producerName[51];
 		int price;
-		
+
 		int createDay, createMonth, createYear;
 
 		printf("Enter create day: ");
@@ -292,7 +292,7 @@ void Insert(sqlite3 *db){
 		printf("Wrong choice!\n");
 		return;
 	}
-	
+
 	if (sqlite3_exec(db, requestBuffer, callback, 0, &errorMsg))
 		printf("%s", errorMsg);
 }
@@ -451,7 +451,7 @@ void Delete(sqlite3 *db){
 		printf("%s", errorMsg);
 }
 void Restrictions(sqlite3 *db) {
-	sqlite3_create_function(db, "restrictions_callback", 0, SQLITE_UTF8, 0, &restrictions_callback, 0, 0);	
+	sqlite3_create_function(db, "restrictions_callback", 0, SQLITE_UTF8, 0, &restrictions_callback, 0, 0);
     const char *sql = "CREATE TRIGGER IF NOT EXISTS check_compact_disk_sales BEFORE INSERT ON Compact_Sale_Info FOR EACH ROW BEGIN SELECT restrictions_callback(); END;";
     sqlite3_exec(db, sql, 0, 0, 0);
 }
@@ -499,7 +499,7 @@ void InfoCD_ByDate(sqlite3 *db){
 
 void Info_ByDate(sqlite3 *db){
 	char requestBuffer[800];
-	char* errorMsg = 0;	
+	char* errorMsg = 0;
 	int id;
 
 	printf("Enter id: ");
