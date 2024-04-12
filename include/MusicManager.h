@@ -1,4 +1,5 @@
 #include "../sqlite/sqlite3.h"
+#include <time.h>
 
 sqlite3* db;
 
