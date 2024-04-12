@@ -26,29 +26,29 @@ TEST(DateToNumberTest, April15th2015)
     EXPECT_EQ(date_to_number(15, 4, 2015), 1429046400);
 }
 
-TEST(DateToNumberTest, September8th2020)
+TEST(DateToNumberTest, June30th2005)
 {
-    EXPECT_EQ(date_to_number(8, 9, 2020), 1599532800);
+    EXPECT_EQ(date_to_number(30, 6, 2005), 1120156800);
 }
 
-TEST(DateToNumberTest, October17th2023)
+TEST(DateToNumberTest, September15th2006)
 {
-    EXPECT_EQ(date_to_number(17, 10, 2023), 1676550400);
+    EXPECT_EQ(date_to_number(15, 9, 2006), 1158297600);
 }
 
-TEST(DateToNumberTest, January1st2024)
+TEST(DateToNumberTest, October20th2007)
 {
-    EXPECT_EQ(date_to_number(1, 1, 2024), 1672531200);
+    EXPECT_EQ(date_to_number(20, 10, 2007), 1192848000);
 }
 
-TEST(DateToNumberTest, November30th2024)
+TEST(DateToNumberTest, November5th2008)
 {
-    EXPECT_EQ(date_to_number(30, 11, 2024), 1706691200);
+    EXPECT_EQ(date_to_number(5, 11, 2008), 1225862400);
 }
 
-TEST(DateToNumberTest, December31st2024)
+TEST(DateToNumberTest, December31st2009)
 {
-    EXPECT_EQ(date_to_number(31, 12, 2024), 1707356800);
+    EXPECT_EQ(date_to_number(31, 12, 2009), 1262217600);
 }
 
 int main()
