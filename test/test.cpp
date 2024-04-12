@@ -1,5 +1,15 @@
 #include <gtest/gtest.h>
 
+extern "C"
+{
+    #include "../include/MusicManager.h"
+}
+
+TEST(Authorization, return_dest)
+{
+
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
 

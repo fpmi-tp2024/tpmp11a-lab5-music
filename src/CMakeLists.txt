@@ -1,6 +1,6 @@
 set(header_path "${${PROJECT_NAME}_SOURCE_DIR}/include/${PROJECT_NAME}")
-set(header ${header_path}/${PROJECT_NAME}.h)
-set(src ${PROJECT_NAME}.cpp)
+set(header "${header_path}/include/MusicManager.h")
+set(src MusicManager.c)
 
 
 add_library(${PROJECT_NAME} SHARED
@@ -13,7 +13,7 @@ target_link_libraries(${PROJECT_NAME}
   pthread)
 
 
-add_executable(${PROJECT_NAME}.info info.cpp)
+add_executable(${PROJECT_NAME}.info src/main.cpp)
 target_include_directories(${PROJECT_NAME}.info
   PUBLIC ${CMAKE_CURRENT_BINARY_DIR}
          ${${PROJECT_NAME}_SOURCE_DIR}/include)

@@ -15,3 +15,9 @@ obj/sqlite3.o: sqlite/sqlite3.c
 
 clean:
 	rm -rf obj/*.o bin/MusicSalon
+
+check: 
+	shell: /usr/bin/bash -e {0}
+
+distcheck:
+	shell: /usr/bin/bash -e {0}
