@@ -8,10 +8,18 @@ jobs:
 
     steps:
     - name: Checkout
-      run: actions/checkout@v3
+      uses: actions/checkout@v3
 
-    - name: Build and install Google Test
+    - name: Build
       run: make
-    
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+     
+    - name: Install google test lib
+      run: sudo apt-get install libgtest-dev
+      
     - name: Run Tests
       run: make test
