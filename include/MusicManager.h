@@ -10,7 +10,7 @@ int testFunc1(int a)
 
 struct tm number_to_date(long int number);
 
-long int date_to_number(int day, int month, int year) {
+long long date_to_number(int day, int month, int year) {
 	struct tm tm;
 	tm.tm_mday = day;
 	tm.tm_mon = month - 1;
