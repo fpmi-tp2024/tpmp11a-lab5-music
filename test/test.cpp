@@ -1,10 +1,6 @@
 #include "gtest/gtest.h"
 #include "../include/MusicManager.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
-#include "../sqlite/sqlite3.h"
 
 TEST(Test, BasicTest)
 {

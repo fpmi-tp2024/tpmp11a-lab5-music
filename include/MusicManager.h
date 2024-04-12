@@ -9,7 +9,17 @@ int testFunc1(int a)
 
 struct tm number_to_date(long int number);
 
-long long date_to_number(int day, int month, int year);
+long int date_to_number(int day, int month, int year) {
+	struct tm tm;
+	tm.tm_mday = day;
+	tm.tm_mon = month - 1;
+	tm.tm_year = year - 1900;
+	tm.tm_hour = 0;
+	tm.tm_min = 0;
+	tm.tm_sec = 0;
+	tm.tm_isdst = -1;
+	return mktime(&tm);
+}
 
 const char* adminCommands[] = {
 	"For all compacts - information on the number of sold and remaining compacts of the same type in descending order of difference.",
