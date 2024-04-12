@@ -2,7 +2,7 @@
 
 extern "C"
 {
-    #include "../include/MusicManager.h"
+    #include "../src/MusicManager.c"
 }
 
 TEST(DateToNumberTest, BasicTest)
