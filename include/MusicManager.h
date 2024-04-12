@@ -49,7 +49,7 @@ void Insert(sqlite3 *db);
 void UpDate(sqlite3 *db);
 void Delete(sqlite3 *db);
 
-const void (*Admin_functions[ADMIN_FUN_COUNT])(sqlite3 *db) = {
+void (*Admin_functions[ADMIN_FUN_COUNT])(sqlite3 *db) = {
 	CountOfSoldAndRemainingCD_Ordered,
 	CountAndCostCD_ByDate,
 	AllCd_ByMaxSold,
@@ -62,12 +62,12 @@ const void (*Admin_functions[ADMIN_FUN_COUNT])(sqlite3 *db) = {
 	UpDate,
 	Delete,
 };
-const void (*User_functions[USER_FUN_COUNT])(sqlite3* db) = {
+void (*User_functions[USER_FUN_COUNT])(sqlite3* db) = {
 	CountAndName_ByMostPopularSigner,
 	AllCd_ByMaxSold,
 	Info_ByDate,
 };
-const void (**Function[2])(sqlite3* db) = {
+void (**Function[2])(sqlite3* db) = {
 		User_functions,
 		Admin_functions
 };
