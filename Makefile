@@ -2,7 +2,8 @@
 # Changed by kirill now it's good makefile best of the best one love i compiled the project yeeaahhh
 
 test: test/test
-    ./test/test; git restore db
+    ./test/test
+    git restore db
 
 test/test: test/test.o
     g++ -std=c++20 -o test/test test/test.o -l sqlite3 -l gtest -l gtest_main
