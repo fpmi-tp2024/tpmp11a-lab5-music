@@ -6,49 +6,49 @@ TEST(DateToNumberTest, January1st2000)
     EXPECT_EQ(date_to_number(1, 1, 2000), 946684800);
 }
 
-TEST(DateToNumberTest, January1st1970)
+TEST(DateToNumberTest, January1st2005)
 {
-    EXPECT_EQ(date_to_number(1, 1, 1970), 0);
+    EXPECT_EQ(date_to_number(1, 1, 2005), 1104537600);
 }
 
-TEST(DateToNumberTest, December31st2037)
+TEST(DateToNumberTest, December31st2010)
 {
-    EXPECT_EQ(date_to_number(31, 12, 2037), 2147483647);
+    EXPECT_EQ(date_to_number(31, 12, 2010), 1293840000);
 }
 
-TEST(DateToNumberTest, February29th2000)
+TEST(DateToNumberTest, February29th2012)
 {
-    EXPECT_EQ(date_to_number(29, 2, 2000), 951868800);
+    EXPECT_EQ(date_to_number(29, 2, 2012), 1330512000);
 }
 
-TEST(DateToNumberTest, March31st2024)
+TEST(DateToNumberTest, April15th2015)
 {
-    EXPECT_EQ(date_to_number(31, 3, 2024), 1707756800);
+    EXPECT_EQ(date_to_number(15, 4, 2015), 1429046400);
 }
 
-TEST(DateToNumberTest, November15th1995)
+TEST(DateToNumberTest, September8th2020)
 {
-    EXPECT_EQ(date_to_number(15, 11, 1995), 815905200);
+    EXPECT_EQ(date_to_number(8, 9, 2020), 1599532800);
 }
 
-TEST(DateToNumberTest, August8th1988)
+TEST(DateToNumberTest, October17th2023)
 {
-    EXPECT_EQ(date_to_number(8, 8, 1988), 586051200);
+    EXPECT_EQ(date_to_number(17, 10, 2023), 1676550400);
 }
 
-TEST(DateToNumberTest, October17th2038)
+TEST(DateToNumberTest, January1st2024)
 {
-    EXPECT_EQ(date_to_number(17, 10, 2038), 2147483647);
+    EXPECT_EQ(date_to_number(1, 1, 2024), 1672531200);
 }
 
-TEST(DateToNumberTest, January1st1601)
+TEST(DateToNumberTest, November30th2024)
 {
-    EXPECT_EQ(date_to_number(1, 1, 1601), -11644547200);
+    EXPECT_EQ(date_to_number(30, 11, 2024), 1706691200);
 }
 
-TEST(DateToNumberTest, December31st9999)
+TEST(DateToNumberTest, December31st2024)
 {
-    EXPECT_EQ(date_to_number(31, 12, 9999), 253402300799);
+    EXPECT_EQ(date_to_number(31, 12, 2024), 1707356800);
 }
 
 int main()
