@@ -52,26 +52,3 @@ void Info_ByDate(sqlite3 *db);
 void Insert(sqlite3 *db);
 void UpDate(sqlite3 *db);
 void Delete(sqlite3 *db);
-
-void (*Admin_functions[ADMIN_FUN_COUNT])(sqlite3 *db) = {
-	CountOfSoldAndRemainingCD_Ordered,
-	CountAndCostCD_ByDate,
-	AllCd_ByMaxSold,
-	CountAndName_ByMostPopularSigner,
-	SalaryAndSoldCount_ByAuthor,
-	Restrictions,
-	InfoCD_ByDate,
-	Info_ByDate,
-	Insert,
-	UpDate,
-	Delete,
-};
-void (*User_functions[USER_FUN_COUNT])(sqlite3* db) = {
-	CountAndName_ByMostPopularSigner,
-	AllCd_ByMaxSold,
-	Info_ByDate,
-};
-void (**Function[2])(sqlite3* db) = {
-		User_functions,
-		Admin_functions
-};
