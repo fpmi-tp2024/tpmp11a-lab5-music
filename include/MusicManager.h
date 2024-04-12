@@ -2,6 +2,11 @@
 
 sqlite3* db;
 
+int testFunc1(int a)
+{
+    return a + 10;
+}
+
 struct tm number_to_date(long int number);
 
 long long date_to_number(int day, int month, int year);
